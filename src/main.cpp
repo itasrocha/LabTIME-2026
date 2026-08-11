@@ -1,11 +1,18 @@
 #include <iostream>
 #include <string>
-#include "../include/core.hpp"
+#include "../include/contingency/EnergyCore.hpp"
+#include "../include/contingency/ContigencySystems.hpp"
 
 int main() {
     std::string input;
 
-    EnergyCore core(100);
+    EnergyCore energyCore;
+    ShieldSystem shieldSystem;
+    LightSystem lightSystem;
+    PanelSystem panelSystem;
+    energyCore.attachObserver(&shieldSystem);
+    energyCore.attachObserver(&lightSystem);
+    energyCore.attachObserver(&panelSystem);
 
     while (true) {
         std::cout << "\n> ";
@@ -19,13 +26,15 @@ int main() {
         }
         else if (input == "ajuda") {
             std::cout << "sair - Sai do programa." << std::endl;
+            std::cout << "energia - Mostra o nível de energia do núcleo." << std::endl;
+            std::cout << "dano - Reduz o nível de energia do núcleo." << std::endl;
         }
         else if (input == "energia") {
-            std::cout << "O nível de energia do núcleo é " << std::to_string(core.getEnergy()) << "." << std::endl;
+            std::cout << "O nível de energia do núcleo é " << std::to_string(energyCore.getEnergy()) << "." << std::endl;
         }
         else if (input == "dano") {
-            core.drainEnergy(10);
-            std::cout << "A energia do núcleo foi reduzida em 10 pontos." << std::endl;
+            energyCore.drainEnergy(10);
+            std::cout << "O nível energia do núcleo foi reduzida em 10 pontos." << std::endl;
         }
         else {
             std::cout << "Comando desconhecido. Digite 'ajuda' para ver os comandos." << std::endl;
