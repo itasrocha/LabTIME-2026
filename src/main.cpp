@@ -38,6 +38,9 @@ int main() {
             std::cout << "sair - Sai do programa." << std::endl;
             std::cout << "energia - Mostra o nível de energia do núcleo." << std::endl;
             std::cout << "dano - Reduz o nível de energia do núcleo." << std::endl;
+            std::cout << "trabalhar - Faz o tripulante trabalhar." << std::endl;
+            std::cout << "tripulante_canhao - Muda a função do tripulante para operador de canhões." << std::endl;
+            std::cout << "tripulante_motor - Muda a função do tripulante para mecânico dos motores." << std::endl;
         }
         else if (input == "energia") {
             std::cout << "O nível de energia do núcleo é " << std::to_string(energyCore.getEnergy()) << "." << std::endl;
