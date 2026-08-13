@@ -1,11 +1,15 @@
 #include <iostream>
+#include <memory>
 #include <string>
 #include "../include/contingency/EnergyCore.hpp"
 #include "../include/contingency/ContigencySystems.hpp"
+#include "../include/crew/CrewMember.hpp"
+#include "../include/crew/CrewMemberDuties.hpp"
 
 int main() {
     std::string input;
 
+    // Energy Core contingency system
     EnergyCore energyCore;
     ShieldSystem shieldSystem;
     LightSystem lightSystem;
@@ -13,6 +17,12 @@ int main() {
     energyCore.attachObserver(&shieldSystem);
     energyCore.attachObserver(&lightSystem);
     energyCore.attachObserver(&panelSystem);
+
+    // Crew duty system
+    auto crewMember = std::make_unique<CrewMember>(
+        "Kyon",
+        std::make_unique<IdleDuty>()
+    );
 
     while (true) {
         std::cout << "\n> ";
@@ -35,6 +45,15 @@ int main() {
         else if (input == "dano") {
             energyCore.drainEnergy(10);
             std::cout << "O nível energia do núcleo foi reduzida em 10 pontos." << std::endl;
+        }
+        else if (input == "trabalhar") {
+            crewMember->work();
+        }
+        else if (input == "tripulante_canhao") {
+            crewMember->changeDuty(std::make_unique<CannonOpertatorDuty>());
+        }
+        else if (input == "tripulante_motor") {
+            crewMember->changeDuty(std::make_unique<EngineMechanicDuty>());
         }
         else {
             std::cout << "Comando desconhecido. Digite 'ajuda' para ver os comandos." << std::endl;
