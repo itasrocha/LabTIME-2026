@@ -5,21 +5,15 @@
 
 class CannonOpertatorDuty: public CrewMemberDuty {
 public:
-    void execute() override {
-        std::cout << "Operando canhões!" << std::endl;
-    }
+    void execute() override;
 };
 
 class EngineMechanicDuty: public CrewMemberDuty {
 public:
-    void execute() override {
-        std::cout << "Consertando motores!" << std::endl;
-    }
+    void execute() override;
 };
 
 class IdleDuty: public CrewMemberDuty {
 public:
-    void execute() override {
-        std::cout << "Que tédio" << std::endl;
-    }
+    void execute() override;
 };
