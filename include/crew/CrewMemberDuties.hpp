@@ -1,7 +1,5 @@
 #pragma once
 #include "CrewMemberDuty.hpp"
-#include <iostream>
-#include <ostream>
 
 /**
  * @class CannonOpertatorDuty

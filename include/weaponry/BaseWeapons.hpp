@@ -1,6 +1,5 @@
 #pragma once
 #include "Weapon.hpp"
-#include <iostream>
 
 /**
  * @class ContinuousLaser

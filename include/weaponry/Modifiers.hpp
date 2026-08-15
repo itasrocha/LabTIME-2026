@@ -1,6 +1,5 @@
 #pragma once
 #include "WeaponDecorator.hpp"
-#include <iostream>
 
 /**
  * @class FireDamageModifier
