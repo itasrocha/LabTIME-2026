@@ -31,6 +31,8 @@ int main() {
     // Ship weaponry system
     Ship ship;
 
+    std::cout << "Digite \"ajuda\" para ver os comandos disponíveis" << std::endl;
+
     while (true) {
         std::cout << "\n> ";
         
@@ -42,39 +44,50 @@ int main() {
             break;
         }
         else if (input == "ajuda") {
-            std::cout << "sair - Sai do programa." << std::endl;
+            std::cout << "\n-- SISTEMA DE CONTINGÊNCIA DO NÚCLEO DE ENERGIA --" << std::endl;
             std::cout << "energia - Mostra o nível de energia do núcleo." << std::endl;
             std::cout << "dano - Reduz o nível de energia do núcleo." << std::endl;
+
+            std::cout << "\n-- COMPORTAMENTO DINÂMICO DA TRIPULAÇÃO --" << std::endl;
             std::cout << "trabalhar - Faz o tripulante trabalhar." << std::endl;
-            std::cout << "tripulante_canhao - Muda a função do tripulante para operador de canhões." << std::endl;
-            std::cout << "tripulante_motor - Muda a função do tripulante para mecânico dos motores." << std::endl;
-            std::cout << "equipar_laser - Equipa o Laser Contínuo na nave." << std::endl;
-            std::cout << "equipar_missil - Equipa o Enxame de Mísseis na nave." << std::endl;
+            std::cout << "trip_canhao - Muda a função do tripulante para operador de canhões." << std::endl;
+            std::cout << "trip_motor - Muda a função do tripulante para mecânico dos motores." << std::endl;
+
+            std::cout << "\n-- ARMAMENTO MODULAR E MODIFICADORES PIRATAS --" << std::endl;
+            std::cout << "equip_laser - Equipa o Laser Contínuo na nave." << std::endl;
+            std::cout << "equip_missil - Equipa o Enxame de Mísseis na nave." << std::endl;
             std::cout << "add_fogo - Adiciona dano de fogo à arma atual." << std::endl;
-            std::cout << "add_perfurante - Adiciona perfuração de armadura à arma atual." << std::endl;
+            std::cout << "add_perf - Adiciona perfuração de armadura à arma atual." << std::endl;
             std::cout << "atirar - Dispara a arma atual da nave com todos os modificadores." << std::endl;
+
+            std::cout << "\n-- COMANDOS DE CONTROLE --" << std::endl;
+            std::cout << "ajuda - Exibe o menu de ajuda." << std::endl;
+            std::cout << "sair - Sai do programa." << std::endl;
         }
         else if (input == "energia") {
-            std::cout << "O nível de energia do núcleo é " << std::to_string(energyCore.getEnergy()) << "." << std::endl;
+            std::cout << "O nível de energia do núcleo é " << std::to_string(energyCore.getEnergy()) << " pontos." << std::endl;
         }
         else if (input == "dano") {
-            energyCore.drainEnergy(10);
-            std::cout << "O nível energia do núcleo foi reduzida em 10 pontos." << std::endl;
+            energyCore.drainEnergy(20);
+            std::cout << "O nível energia do núcleo sofreu um dano de 20 pontos. O limiar crítico é 30 pontos!" << std::endl;
+            std::cout << "O nível energia do núcleo atual é: " << std::to_string(energyCore.getEnergy()) << " pontos." << std::endl;
         }
         else if (input == "trabalhar") {
             crewMember->work();
         }
-        else if (input == "tripulante_canhao") {
+        else if (input == "trip_canhao") {
             crewMember->changeDuty(std::make_unique<CannonOpertatorDuty>());
+            std::cout << "Estou a postos nos canhões!" << std::endl;
         }
-        else if (input == "tripulante_motor") {
+        else if (input == "trip_motor") {
             crewMember->changeDuty(std::make_unique<EngineMechanicDuty>());
+            std::cout << "Estou a postos nos motores!" << std::endl;
         }
-        else if (input == "equipar_laser") {
+        else if (input == "equip_laser") {
             ship.equipWeapon(std::make_unique<ContinuousLaser>());
             std::cout << "Laser Contínuo equipado." << std::endl;
         }
-        else if (input == "equipar_missil") {
+        else if (input == "equip_missil") {
             ship.equipWeapon(std::make_unique<MissileSwarm>());
             std::cout << "Enxame de Mísseis equipado." << std::endl;
         }
@@ -87,7 +100,7 @@ int main() {
                 std::cout << "Nenhuma arma equipada para modificar!" << std::endl;
             }
         }
-        else if (input == "add_perfurante") {
+        else if (input == "add_perf") {
             auto currentWeapon = ship.unequipWeapon();
             if (currentWeapon) {
                 ship.equipWeapon(std::make_unique<ArmorPiercingModifier>(std::move(currentWeapon)));
