@@ -15,12 +15,12 @@ int main() {
 
     // Energy Core contingency system
     EnergyCore energyCore;
-    ShieldSystem shieldSystem;
-    LightSystem lightSystem;
-    PanelSystem panelSystem;
-    energyCore.attachObserver(&shieldSystem);
-    energyCore.attachObserver(&lightSystem);
-    energyCore.attachObserver(&panelSystem);
+    auto shieldSystem = std::make_shared<ShieldSystem>();
+    auto lightSystem = std::make_shared<LightSystem>();
+    auto panelSystem = std::make_shared<PanelSystem>();
+    energyCore.attachObserver(shieldSystem);
+    energyCore.attachObserver(lightSystem);
+    energyCore.attachObserver(panelSystem);
 
     // Crew duty system
     auto crewMember = std::make_unique<CrewMember>(

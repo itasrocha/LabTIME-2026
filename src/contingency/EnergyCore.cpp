@@ -4,26 +4,34 @@
 
 EnergyCore::EnergyCore() : energyLevel(100) {}
 
-void EnergyCore::attachObserver(EnergyCoreObserver* observer) {
+void EnergyCore::attachObserver(std::shared_ptr<EnergyCoreObserver> observer) {
     this->observers.push_back(observer);
 }
 
-void EnergyCore::detachObserver(EnergyCoreObserver* observer) {
+void EnergyCore::detachObserver(std::shared_ptr<EnergyCoreObserver> observer) {
     this->observers.erase(
-        std::remove(observers.begin(), observers.end(), observer),
+        std::remove_if(observers.begin(), observers.end(),
+            [&observer](const std::weak_ptr<EnergyCoreObserver>& weak_ptr) {
+                return weak_ptr.expired() || weak_ptr.lock() == observer;
+            }),
         observers.end()
     );
 }
 
 void EnergyCore::notifyObservers() {
-    for (auto* observer: observers) {
-        observer->update();
+    for (auto it = observers.begin(); it != observers.end(); ) {
+        if (auto observer = it->lock()) {
+            observer->update();
+            ++it;
+        } else {
+            it = observers.erase(it);
+        }
     }
 }
 
 int EnergyCore::getEnergy() const {return energyLevel;}
 
-void EnergyCore::drainEnergy(int amount) {
+void EnergyCore::drainEnergy(unsigned int amount) {
     this->energyLevel -= amount;
     if (this->energyLevel < 0) energyLevel = 0;
     if (this->energyLevel < 30 && this->energyLevel + amount >= 30) notifyObservers();
