@@ -73,3 +73,41 @@ build/bin/LabTIME
 ```
 
 *(No Windows, o caminho pode ser algo como `build\bin\Debug\LabTIME.exe`)*
+
+### Exemplos de Sequências de Comandos
+
+**1. Testando o Sistema de Contingência**
+
+Simule o núcleo de energia perdendo força gradualmente até atingir o limiar crítico (30 pontos ou menos) para ver os sistemas da nave reagindo automaticamente:
+```
+> energia
+> dano
+> dano
+> dano
+> dano
+```
+*(No quarto comando `dano`, a energia cairá para 20 e você verá os alertas dos escudos, luzes e painéis sendo disparados simultaneamente).*
+
+**2. Testando o Comportamento Dinâmico da Tripulação**
+
+Mude a função do membro da tripulação e faça-o trabalhar para ver a diferença na execução da tarefa:
+```
+> trip_canhao
+> trabalhar
+> trip_motor
+> trabalhar
+```
+
+**3. Testando o Armamento Modular**
+
+Equipe uma arma e dispare. Depois adicione modificadores um a um e dispare novamente para ver o efeito cascata (cumulativo):
+```
+> equip_laser
+> atirar
+> add_fogo
+> atirar
+> add_perf
+> atirar
+> equip_missil
+> atirar
+```
