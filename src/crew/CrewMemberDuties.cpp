@@ -2,13 +2,13 @@
 #include <iostream>
 
 void CannonOpertatorDuty::execute() {
-    std::cout << "Operando canhões!" << std::endl;
+    std::cout << "Disparando os canhões!" << std::endl;
 }
 
 void EngineMechanicDuty::execute() {
-    std::cout << "Consertando motores!" << std::endl;
+    std::cout << "Consertando os motores!" << std::endl;
 }
 
 void IdleDuty::execute() {
-    std::cout << "Que tédio" << std::endl;
+    std::cout << "Que tédio, não tenho nada pra fazer." << std::endl;
 }
