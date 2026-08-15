@@ -19,12 +19,12 @@ void EnergyCore::detachObserver(std::shared_ptr<EnergyCoreObserver> observer) {
 }
 
 void EnergyCore::notifyObservers() {
-    for (auto it = observers.begin(); it != observers.end(); ) {
-        if (auto observer = it->lock()) {
+    for (auto iterator = observers.begin(); iterator != observers.end(); ) {
+        if (auto observer = iterator->lock()) {
             observer->update();
-            ++it;
+            iterator++;
         } else {
-            it = observers.erase(it);
+            iterator = observers.erase(iterator);
         }
     }
 }
