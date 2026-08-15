@@ -36,3 +36,40 @@ A aplicação é uma simulação de console interativa demonstrando o uso de Des
 * **Decorator (Decorador Base):** `WeaponDecorator` (Classe abstrata que estende `Weapon` e mantém uma referência para um `Weapon` a ser decorado)
 * **Concrete Decorators (Decoradores Concretos):** `FireDamageModifier` e `ArmorPiercingModifier` (presentes em `Modifiers.hpp`)
 * **Client (Cliente):** `Ship` (Armazena a abstração da arma e dispara o tiro)
+
+## 3. Instruções de Execução
+
+O projeto foi construído utilizando C++ e o sistema de build CMake.
+
+### Pré-requisitos
+* Compilador C++ com suporte ao padrão **C++20** (GCC, Clang, MSVC, ...)
+* **CMake** (versão 3.16 ou superior)
+
+### Compilando o Projeto
+
+1. Clone o repositório:
+    ```bash
+   git clone https://github.com/itasrocha/LabTIME-2026.git
+   ```
+2. Navegue até o diretório raiz do projeto:
+   ```bash
+   cd LabTIME-2026
+   ```
+3. Gere os arquivos de build:
+   ```bash
+   cmake -B build
+   ```
+4. Compile o código executável:
+   ```bash
+   cmake --build build
+   ```
+
+### Executando a Demonstração
+Após compilar com sucesso, o arquivo executável `LabTIME` estará disponível dentro do diretório `build/bin`.
+Para iniciar o console interativo, execute:
+
+```bash
+build/bin/LabTIME
+```
+
+*(No Windows, o caminho pode ser algo como `build\bin\Debug\LabTIME.exe`)*
