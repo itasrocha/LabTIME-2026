@@ -86,7 +86,7 @@ Simule o núcleo de energia perdendo força gradualmente até atingir o limiar c
 > dano
 > dano
 ```
-*(No quarto comando `dano`, a energia cairá para 20 e você verá os alertas dos escudos, luzes e painéis sendo disparados simultaneamente).*
+*(No quarto comando `dano`, a energia cairá para 20 e você verá os alertas dos escudos, luzes e painéis sendo disparados simultaneamente)*
 
 **2. Testando o Comportamento Dinâmico da Tripulação**
 
